@@ -7,7 +7,6 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>{{ __('Daftar Peminjaman') }}</span>
-                    <a href="{{ route('peminjaman.create') }}" class="btn btn-primary btn-sm">Buat Peminjaman</a>
                 </div>
 
                 <div class="card-body">
@@ -61,7 +60,7 @@
                                                 <a href="{{ route('peminjaman.show', $item->id_peminjaman) }}" class="btn btn-info btn-sm me-1">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
-                                                
+
                                                 @if(auth()->user()->role == 'admin')
                                                     @if($item->status == 'requested')
                                                         <a href="{{ route('peminjaman.approve', $item->id_peminjaman) }}" class="btn btn-success btn-sm me-1" onclick="return confirm('Yakin menyetujui peminjaman ini?')">
@@ -71,7 +70,7 @@
                                                             <i class="bi bi-x"></i>
                                                         </a>
                                                     @endif
-                                                    
+
                                                     <form action="{{ route('peminjaman.destroy', $item->id_peminjaman) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                                         @csrf
                                                         @method('DELETE')

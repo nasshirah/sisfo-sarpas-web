@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_peminjaman');
             $table->date('tanggal_kembali');
             $table->text('keterangan')->nullable();
-            $table->enum('label_status', ['selesai', 'menunggu', 'penting'])->nullable();
+            $table->enum('label_status', ['selesai', 'menunggu', 'damage'])->default('menunggu');
+            $table->decimal('denda', 10, 2)->nullable()->default(0);
             $table->timestamps();
-
             $table->foreign('id_peminjaman')->references('id_peminjaman')->on('peminjaman')->onDelete('cascade');
         });
     }

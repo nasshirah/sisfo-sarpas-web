@@ -27,13 +27,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
-    Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
-    Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
-    Route::get('/barang/{id_barang}', [BarangController::class, 'show'])->name('barang.show');
-    Route::get('/barang/{id_barang}/edit', [BarangController::class, 'edit'])->name('barang.edit');
-    Route::put('/barang/{id_barang}', [BarangController::class, 'update'])->name('barang.update');
-    Route::delete('/barang/{id_barang}', [BarangController::class, 'destroy'])->name('barang.destroy');
-    
+Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
+Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
+Route::get('/barang/{id_barang}', [BarangController::class, 'show'])->name('barang.show');
+Route::get('/barang/{id_barang}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+Route::put('/barang/{id_barang}', [BarangController::class, 'update'])->name('barang.update');
+Route::delete('/barang/{id_barang}', [BarangController::class, 'destroy'])->name('barang.destroy');
+
 // Routes untuk Kategori Barang
 Route::get('/kategori', [KategoriBarangController::class, 'index'])->name('kategori.index');
 Route::get('/kategori/create', [KategoriBarangController::class, 'create'])->name('kategori.create');
@@ -44,6 +44,8 @@ Route::put('/kategori/{id}', [KategoriBarangController::class, 'update'])->name(
 Route::delete('/kategori/{kategori_barang}', [KategoriBarangController::class, 'destroy'])->name('kategori.destroy');
 
 Route::resource('pengembalian', PengembalianController::class);
+Route::get('pengembalian/{id}/approve', [PengembalianController::class, 'approve'])->name('pengembalian.approve');
+Route::post('pengembalian/{id}/damage', [PengembalianController::class, 'damage'])->name('pengembalian.damage');
 
 // Routes untuk peminjaman
 Route::resource('peminjaman', PeminjamanController::class);
@@ -58,8 +60,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'index'])
-        ->name('laporan.index');
+    ->name('laporan.index');
 
 // Logout
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-

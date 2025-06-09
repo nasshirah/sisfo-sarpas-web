@@ -11,21 +11,22 @@ class Pengembalian extends Model
     protected $table = 'pengembalian';
     protected $primaryKey = 'id_pengembalian';
 
-    protected $fillable = ['id_peminjaman', 'tanggal_kembali', 'keterangan', 'label_status'];
+    protected $fillable = ['id_peminjaman', 'tanggal_kembali', 'keterangan', 'label_status', 'denda'];
 
-    public function peminjaman() {
+    public function peminjaman()
+    {
         return $this->belongsTo(Peminjaman::class, 'id_peminjaman');
     }
 
     public function barang()
-{
-    return $this->hasOneThrough(
-        Barang::class,
-        Peminjaman::class,
-        'id_peminjaman', // Foreign key on peminjaman table
-        'id_barang',     // Foreign key on barang table
-        'id_peminjaman', // Local key on pengembalian table
-        'id_barang'      // Local key on peminjaman table
-    );
-}
+    {
+        return $this->hasOneThrough(
+            Barang::class,
+            Peminjaman::class,
+            'id_peminjaman', // Foreign key on peminjaman table
+            'id_barang',     // Foreign key on barang table
+            'id_peminjaman', // Local key on pengembalian table
+            'id_barang'      // Local key on peminjaman table
+        );
+    }
 }

@@ -28,10 +28,26 @@ class PengembalianApiController extends Controller
             'id_peminjaman' => 'required|exists:peminjaman,id_peminjaman',
             'tanggal_kembali' => 'required|date',
             'keterangan' => 'nullable|string',
-            'label_status' => 'nullable|in:selesai,menunggu,penting',
+            'label_status' => 'nullable|in:selesai,menunggu,damage',
         ]);
 
+        // Ambil data peminjaman
         $peminjaman = Peminjaman::with('barang')->findOrFail($request->id_peminjaman);
+
+        // Cek apakah peminjaman sudah dikembalikan
+        if ($peminjaman->pengembalian) {
+            return response()->json([
+                'message' => 'Barang dari peminjaman ini sudah dikembalikan sebelumnya.'
+            ], 400);
+        }
+
+        // Validasi status peminjaman
+        if ($peminjaman->status !== 'disetujui') {
+            return response()->json([
+                'message' => 'Peminjaman belum disetujui dan tidak dapat dikembalikan.'
+            ], 400);
+        }
+
         $barang = $peminjaman->barang;
 
         // Update stok barang
@@ -44,7 +60,7 @@ class PengembalianApiController extends Controller
             'id_peminjaman' => $request->id_peminjaman,
             'tanggal_kembali' => $request->tanggal_kembali,
             'keterangan' => $request->keterangan,
-            'label_status' => $request->label_status,
+            'label_status' => $request->label_status ?? 'menunggu',
         ]);
 
         return response()->json([

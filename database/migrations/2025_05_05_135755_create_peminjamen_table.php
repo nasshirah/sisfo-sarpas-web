@@ -19,10 +19,8 @@ return new class extends Migration
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali')->nullable();
             $table->enum('status', ['diminta', 'disetujui', 'ditolak', 'dikembalikan']);
-
             $table->enum('label_status', ['selesai', 'menunggu', 'penting'])->nullable();
             $table->timestamps();
-
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->foreign('id_barang')->references('id_barang')->on('barang')->onDelete('cascade');
         });
