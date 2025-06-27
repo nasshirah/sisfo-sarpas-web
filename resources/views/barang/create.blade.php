@@ -85,12 +85,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="lokasi">Lokasi</label>
-                        <input type="text" class="form-control" id="lokasi" name="lokasi" value="{{ old('lokasi') }}">
-                    </div>
-                </div>
+                
             </div>
 
             <div class="row mb-3">
@@ -105,10 +100,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="keterangan">Keterangan</label>
-                <textarea class="form-control" id="keterangan" name="keterangan" rows="3">{{ old('keterangan') }}</textarea>
-            </div>
+           
 
             <div class="form-group">
         <label for="gambar">Gambar Barang</label>

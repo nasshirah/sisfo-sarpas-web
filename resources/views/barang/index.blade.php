@@ -35,7 +35,6 @@
                         <th>Tersedia</th>
                         <th>Dipinjam</th>
                         <th>Kondisi</th>
-                        <th>Lokasi</th>
                         <th>Status</th>
                         <th>Gambar</th>
                         <th>Aksi</th>
@@ -62,7 +61,7 @@
                                 <span class="badge bg-secondary text-white">{{ $item->kondisi }}</span>
                             @endif
                         </td>
-                        <td>{{ $item->lokasi }}</td>
+                        
                         <td>
                             @if($item->status == 'aktif')
                                 <span class="badge bg-success text-white">Aktif</span>

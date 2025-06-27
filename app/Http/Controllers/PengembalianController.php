@@ -26,6 +26,7 @@ class PengembalianController extends Controller
         $request->validate([
             'id_peminjaman' => 'required',
             'tanggal_kembali' => 'required|date',
+            'keterangan' => 'required',
         ]);
 
         $peminjaman = Peminjaman::with('barang')->findOrFail($request->id_peminjaman);
@@ -105,6 +106,7 @@ class PengembalianController extends Controller
         $request->validate([
             'id_peminjaman' => 'required|exists:peminjaman,id_peminjaman',
             'tanggal_kembali' => 'required|date',
+            'keterangan' => 'required',
         ]);
 
         $peminjaman = Peminjaman::with('barang')->findOrFail($request->id_peminjaman);

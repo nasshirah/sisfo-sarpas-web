@@ -20,7 +20,6 @@ class Barang extends Model
         'tersedia',
         'dipinjam',
         'kondisi',
-        'lokasi',
         'status',
         'keterangan',
         'gambar',

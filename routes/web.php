@@ -9,6 +9,8 @@ use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RequestPeminjamanController;
 use App\Http\Controllers\API\AuthApiController;
+use App\Http\Controllers\UserCreateController;
+
 
 Route::get('/', function () {
     return redirect('/login');
@@ -61,6 +63,14 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'index'])
     ->name('laporan.index');
+
+
+Route::get('/users', [UserCreateController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserCreateController::class, 'create'])->name('users.create');
+Route::post('/users', [UserCreateController::class, 'store'])->name('users.store');
+Route::get('/users/{id_user}/edit', [UserCreateController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id_user}', [UserCreateController::class, 'update'])->name('users.update');
+Route::delete('/users/{id_user}', [UserCreateController::class, 'destroy'])->name('users.destroy');
 
 // Logout
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');

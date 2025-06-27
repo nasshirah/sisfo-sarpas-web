@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Daftar Kategori Barang</span>
-                    <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm">Tambah Kategori</a>
+                    <span>Daftar User</span>
+                    <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Tambah User</a>
                 </div>
 
                 <div class="card-body">
@@ -22,30 +22,29 @@
                             <thead>
                                 <tr>
                                     <th width="5%">No</th>
-                                    <th>Nama Kategori</th>
-                                   
+                                    <th>Nama</th>
+                                    <th>Email</th>
                                     <th width="20%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($kategori as $index => $item)
+                                @forelse ($users as $index => $user)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $item->nama_kategori }}</td>
-                                        
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
                                         <td>
-                                            <form action="{{ route('kategori.destroy', $item->id_kategori) }}" method="POST">
-                                                
-                                                <a href="{{ route('kategori.edit', $item->id_kategori) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ route('users.destroy', $user->id_user) }}" method="POST" class="d-inline">
+                                                <a href="{{ route('users.edit', $user->id_user) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">Hapus</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center">Tidak ada data kategori</td>
+                                        <td colspan="4" class="text-center">Tidak ada data user</td>
                                     </tr>
                                 @endforelse
                             </tbody>

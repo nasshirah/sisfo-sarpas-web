@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('tersedia')->default(0);
             $table->integer('dipinjam')->default(0);
             $table->enum('kondisi', ['Baik', 'Rusak Ringan', 'Rusak Berat']);
-            $table->string('lokasi');
             $table->enum('status', ['tersedia', 'tidak tersedia']);
             $table->text('keterangan')->nullable();
             $table->timestamps();

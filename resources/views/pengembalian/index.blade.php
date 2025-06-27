@@ -4,7 +4,6 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">Daftar Pengembalian</h6>
-
         </div>
         <div class="card-body">
             @if (session('success'))
@@ -22,6 +21,7 @@
                             <th>Peminjaman</th>
                             <th>Barang</th>
                             <th>Tanggal Kembali</th>
+                            <th>Keterangan</th>
                             <th>Status</th>
                             <th>Denda</th>
                             <th>Aksi</th>
@@ -33,8 +33,8 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $item->peminjaman->user->name ?? 'N/A' }}</td>
                                 <td>{{ $item->peminjaman->barang->nama_barang }}</td>
-                                <td>{{ $item->tanggal_kembali ? \Carbon\Carbon::parse($item->tanggal_kembali)->format('d M Y') : 'Belum Dikembalikan' }}
-                                </td>
+                                <td>{{ $item->tanggal_kembali ? \Carbon\Carbon::parse($item->tanggal_kembali)->format('d M Y') : 'Belum Dikembalikan' }}</td>
+                                <td>{{ $item->keterangan ?? '-' }}</td>
                                 <td>
                                     @if ($item->label_status == 'selesai')
                                         <span class="badge bg-success">Selesai</span>
@@ -48,8 +48,7 @@
                                 </td>
                                 <td>
                                     @if ($item->denda && $item->denda > 0)
-                                        <span class="text-danger fw-bold">Rp
-                                            {{ number_format($item->denda, 0, ',', '.') }}</span>
+                                        <span class="text-danger fw-bold">Rp {{ number_format($item->denda, 0, ',', '.') }}</span>
                                     @else
                                         <span class="text-muted">-</span>
                                     @endif
@@ -102,12 +101,14 @@
                                     <p class="fw-bold">{{ $item->peminjaman->user->name ?? 'N/A' }}</p>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="denda{{ $item->id_pengembalian }}" class="form-label">Jumlah Denda
-                                        (Rp)
-                                    </label>
+                                    <label for="denda{{ $item->id_pengembalian }}" class="form-label">Jumlah Denda (Rp)</label>
                                     <input type="number" class="form-control" id="denda{{ $item->id_pengembalian }}"
-                                        name="denda" min="0" step="1000" required
-                                        placeholder="Masukkan jumlah denda">
+                                        name="denda" min="0" step="1000" required placeholder="Masukkan jumlah denda">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keterangan{{ $item->id_pengembalian }}" class="form-label">Keterangan</label>
+                                    <textarea class="form-control" id="keterangan{{ $item->id_pengembalian }}"
+                                              name="keterangan" rows="3" placeholder="Tulis keterangan tambahan..."></textarea>
                                 </div>
                                 <div class="alert alert-warning">
                                     <i class="fas fa-exclamation-triangle"></i>

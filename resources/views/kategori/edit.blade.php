@@ -32,13 +32,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="deksripsi" class="form-label">Deskripsi</label>
-                            <textarea name="deksripsi" id="deksripsi" class="form-control @error('deksripsi') is-invalid @enderror" rows="3">{{ old('deksripsi', $kategori_barang->deksripsi) }}</textarea>
-                            @error('deksripsi')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Perbarui</button>
                         </div>
